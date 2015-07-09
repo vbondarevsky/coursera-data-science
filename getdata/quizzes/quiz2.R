@@ -8,7 +8,10 @@
 # (https://github.com/hadley/httr/blob/master/demo/oauth2-github.r). 
 # You may also need to run the code in the base R package and not R studio.
 
-library(httr)
+if(!require("httr", character.only = T, quietly = T)) {
+    install.packages("httr")
+    library("httr", character.only = T)
+}
 
 # 1. Find OAuth settings for github:
 #    http://developer.github.com/v3/oauth/
@@ -47,7 +50,11 @@ data$created_at
 # the dbSendQuery command in RMySQL. 
 # Download the American Community Survey data and load it into an R object called
 # acs
-require(sqldf)
+if(!require("sqldf", character.only = T, quietly = T)) {
+    install.packages("sqldf")
+    library("sqldf", character.only = T)
+}
+
 if(!file.exists("./data")) {
     dir.create("./data")
 }

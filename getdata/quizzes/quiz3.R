@@ -41,8 +41,10 @@ if(!file.exists(file.name)) {
 # Use the parameter native=TRUE. 
 # What are the 30th and 80th quantiles of the resulting data? 
 # (some Linux systems may produce an answer 638 different for the 30th quantile)
-install.packages("jpeg")
-require(jpeg)
+if(!require("jpeg", character.only = T, quietly = T)) {
+    install.packages("jpeg")
+    library("jpeg", character.only = T)
+}
 
 jpg <- readJPEG(file.name, native = TRUE)
 quantile(jpg, c(0.3, 0.8))

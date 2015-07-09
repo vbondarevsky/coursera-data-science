@@ -22,7 +22,10 @@ if(!file.exists(file.name)) {
 }
 
 # Read rows 18-23 and columns 7-15 into R and assign the result to a variable called:
-require(xlsx)
+if(!require("xlsx", character.only = T, quietly = T)) {
+    install.packages("xlsx")
+    library("xlsx", character.only = T)
+}
 dat <- read.xlsx(file.name, sheetIndex = 1, startRow = 18, endRow = 23, colIndex = c(7:15))
 
 
@@ -37,7 +40,10 @@ if(!file.exists(file.name)) {
     download.file(url, file.name)
 }
 
-require(XML)
+if(!require("XML", character.only = T, quietly = T)) {
+    install.packages("XML")
+    library("XML", character.only = T)
+}
 doc <- xmlTreeParse(file.name, useInternal = TRUE)
 root <- xmlRoot(doc)
 
@@ -50,7 +56,10 @@ url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv"
 
 # using the fread() command load the data into an R object
 # DT
-require(data.table)
+if(!require("data.table", character.only = T, quietly = T)) {
+    install.packages("data.table")
+    library("data.table", character.only = T)
+}
 DT <- fread(url)
 
 # Which of the following is the fastest way to calculate the average value of the variable
